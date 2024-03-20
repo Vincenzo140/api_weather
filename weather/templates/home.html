@@ -10,12 +10,20 @@
         <div class="col-md-4 p-2">
           <div class="card">
             <div class="card-header">
-                Temperatura: {{ weather.temperature }}
+                Temperatura: {{ weather.temperature}} °
             </div>
             <div class="card-body">
                 <p class="card-text">
                     Data: {{ weather.date }} <br />
-                    Cidade
+                    {% if weather.city %}
+                    Cidade: {{ weather.city }} <br />
+                    {% else %}
+                    Cidade:  Sorocaba-Sp <br />
+                    {% endif %}
+                 
+                    
+    
+                    
                 </p>
             </div>
           </div>
