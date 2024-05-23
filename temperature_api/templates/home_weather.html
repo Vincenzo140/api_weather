@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Data</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Weather Data</h1>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Temperature</th>
+                    <th>City</th>
+                    <th>Atmospheric Pressure</th>
+                    <th>Humidity</th>
+                    <th>Weather</th>
+                    <th>Date</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for weather in weathers %}
+                <tr>
+                    <td>{{ weather.temperature }}</td>
+                    <td>{{ weather.city }}</td>
+                    <td>{{ weather.atmosphericPressure }}</td>
+                    <td>{{ weather.humidity }}</td>
+                    <td>{{ weather.weather }}</td>
+                    <td>{{ weather.date }}</td>
+                    <td><a href="{% url 'Weather Edit' id=weather.id user_id=user_id %}" class="btn btn-primary">Edit</a></td>
+                    <td><a href="{% url 'Weather Delete' id=weather.id user_id=user_id %}" class="btn btn-danger">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <form action="{% url 'Weather Insert' user_id=user_id %}" method="GET">
+                <button type="submit" class="btn btn-success">Create a Forecast</button>
+            </form>
+            <form action="{% url 'Weather Reset' user_id=user_id %}" method="DELETE">
+                <button type="submit" class="btn btn-warning">Reset Forecasts</button>
+            </form>
+            <a href="{% url 'User Edit' user_id=user_id %}" class="btn btn-info">Edit User</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

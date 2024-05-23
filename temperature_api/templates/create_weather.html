@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Weather</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .form-control {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <h2 class="text-center">Insert Weather</h2>
+                    <form method="post" action="{% url 'Weather Insert' user_id=user_id %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="temperature">Temperature</label>
+                            <input type="number" class="form-control" id="temperature" name="temperature" placeholder="Temperature" value="{{ form.temperature.value }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{ form.city.value }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="atmosphericPressure">Atmospheric Pressure</label>
+                            <input type="number" class="form-control" id="atmosphericPressure" name="atmosphericPressure" placeholder="Atmospheric Pressure" value="{{ form.atmosphericPressure.value }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="humidity">Humidity</label>
+                            <input type="number" class="form-control" id="humidity" name="humidity" placeholder="Humidity" value="{{ form.humidity.value }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="weather">Weather</label>
+                            <input type="text" class="form-control" id="weather" name="weather" placeholder="Weather" value="{{ form.weather.value }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
